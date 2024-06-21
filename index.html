@@ -10,7 +10,12 @@
 </head>
 <body>
     <div id = "app">
+        <form id = "app-form">
+            <input type = "text" v-model = "input_program" placeholder = "Digite a hardskill">
+            <input type = "submit" value = "Enviar" v-on:click = "submitForm">
+        </form>
         <p>O meu nome é: {{ nome }}, e trabalho com programação {{ programador }}</p>
+        <p>Data binding: {{ input_program }}</p>
     </div>
 </body>
 </html>
