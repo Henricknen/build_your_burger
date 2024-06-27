@@ -1,10 +1,19 @@
 # build_your_burger
 
-Projeto para montar o seu próprio hambúrguer utilizando o framework Vue.js 3.
+## Project setup
+```
+npm install
+```
 
-# Instalação do Vue via CDN
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-Cole o seguinte script no head do HTML do seu projeto:
+### Compiles and minifies for production
+```
+npm run build
+```
 
-```html
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
