@@ -1,6 +1,6 @@
 <template>
     <footer id = "footer">
-        <p>Pizzas &copy; 2024</p>
+        <p>Luis Henrique S. F. &copy; 2024</p>
     </footer>
 </template>
 
