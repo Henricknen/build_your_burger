@@ -8,7 +8,10 @@
 export default {
     name: "Message",
     props: {
-        msg: String
+        msg: {
+            type: [Number, String], // Aceita tanto números quanto strings
+            required: true
+        }
     }
 }
     
