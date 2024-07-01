@@ -5,7 +5,7 @@
             <form id = "burger-form" @submit = "createBurger">
                 <div class = "input-container">
                     <label for = "nome">Nome do cliente:</label>
-                    <input type = "text" id = "nome" neme = "nome" v-model = "nome" placeholder = "Digite seu nome">
+                    <input type = "text" id = "nome" name = "nome" v-model = "nome" placeholder = "Digite seu nome">
                 </div>
                 <div class = "input-container">
                     <label for = "pao">Escolha o pão:</label>
@@ -28,7 +28,7 @@
                 <div id = "opcionais-container" class = "input-container">
                     <label id = "opcionais-title" for = "opcionais">Seleçione os opcionais:</label>
                     <div class = "checkbox-container" v-for = "opcional in opcionaisdata" :key = "opcional.id">
-                        <input type = "checkbox" name = "opcionais" v-model = "opcionais" :value = "opcional.tipo">
+                        <input type="checkbox" name="opcionais" v-model="opcionais" :value="opcional.tipo">
                         <span>{{ opcional.tipo }}</span>
                     </div>                    
                 </div>

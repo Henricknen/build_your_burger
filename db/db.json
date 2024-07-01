@@ -78,13 +78,14 @@
     }
   ],
   "burgers": [
+    {},
     {
-      "id": "2af6",
-      "nome": "dfdf",
+      "id": "ce08",
+      "nome": "luis",
       "carne": null,
       "pao": null,
       "opcionais": [
-        "Cebola roxa"
+        "Cheddar"
       ],
       "status": "solicitado"
     }
