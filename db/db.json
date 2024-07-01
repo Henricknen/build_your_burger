@@ -78,16 +78,26 @@
     }
   ],
   "burgers": [
-    {},
     {
-      "id": "ce08",
-      "nome": "luis",
+      "nome": "João Coelho",
+      "carne": "Maminha",
+      "pao": "3 Queijos",
+      "opcionais": [
+        "Salame",
+        "Cebola roxa"
+      ],
+      "status": "Solicitado",
+      "id": "4"
+    },
+    {
+      "nome": "dfdf",
       "carne": null,
       "pao": null,
       "opcionais": [
-        "Cheddar"
+        "Bacon"
       ],
-      "status": "solicitado"
+      "status": "solicitado",
+      "id": "5"
     }
   ]
 }
