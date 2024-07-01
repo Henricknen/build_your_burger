@@ -19,7 +19,7 @@
         <div>
           <ul v-for = "(opcional, index) in burger.opcionais" :key = "index">
             <li>{{ opcional }}</li>
-          </ul>
+          </ul> 
         </div>
         <div>
           <select name = "status" class = "status" @change = "updateBurger($event, burger.id)">
@@ -92,6 +92,19 @@
 
         console.log(res)
 
+      },
+      async updatedBurger(event, id) {
+        const option = event.target.value;
+
+        const dataJson = JSON.stringify({ status:option });
+
+        const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+          method: "PATCH",
+          headers: {"content-type": "application/json"},
+          body: dataJson
+        });
+
+        const res = await req.json();
       }
     },
     mounted () {
@@ -129,12 +142,6 @@
   #burger-table-heading div,
   .burger-table-row div {
     width: 19%;
-  }
-
-  .burger-table-row {
-    width: 100%;
-    padding: 12px;
-    border-bottom: 1px solid #CCC;
   }
 
   #burger-table-heading .order-id,
