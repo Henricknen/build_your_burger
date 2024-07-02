@@ -1,4 +1,5 @@
 <template>
+
     <div class = "message-container">
         <p>{{ msg }}</p>
     </div>
@@ -8,10 +9,7 @@
 export default {
     name: "Message",
     props: {
-        msg: {
-            type: [Number, String], // Aceita tanto números quanto strings
-            required: true
-        }
+        msg: String
     }
 }
     

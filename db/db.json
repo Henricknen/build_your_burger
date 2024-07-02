@@ -79,14 +79,42 @@
   ],
   "burgers": [
     {
-      "nome": "dfdf",
+      "id": "91d8",
+      "nome": "luis",
       "carne": null,
       "pao": null,
       "opcionais": [
         "Bacon"
       ],
-      "status": "solicitado",
-      "id": "5"
+      "status": "solicitado"
+    },
+    {
+      "id": "6f43",
+      "nome": "luis",
+      "carne": null,
+      "pao": null,
+      "opcionais": [
+        "Cheddar"
+      ],
+      "status": "solicitado"
+    },
+    {
+      "id": "bdaa",
+      "nome": "dfdf",
+      "carne": null,
+      "pao": null,
+      "opcionais": [
+        "Tomate"
+      ],
+      "status": "solicitado"
+    },
+    {
+      "id": "5503",
+      "nome": "",
+      "carne": "",
+      "pao": "",
+      "opcionais": [],
+      "status": "solicitado"
     }
   ]
 }
