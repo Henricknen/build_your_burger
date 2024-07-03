@@ -12,7 +12,7 @@
     </div>
     <div id = "burger-table-rows">
       <div class = "burger-table-row" v-for = "burger in burgers" :key = "burger.id"> 
-        <div class = "order-number">{{ burger.id }}</div>
+        <div class="order-number">{{ !isNaN(parseInt(burger.id)) ? parseInt(burger.id) : '0' }}</div>
         <div>{{ burger.nome }}</div>
         <div>{{ burger.pao   }}</div>
         <div>{{ burger.carne }}</div>
@@ -35,83 +35,100 @@
 
 </template>
 <script>
-  export default {
-    name: "Dashboard",
-    data() {
-      return {
-        burgers: null,
-        burger_id: null,
-        status: []
+export default {
+  name: "Dashboard",
+  data() {
+    return {
+      burgers: null,
+      burger_id: null,
+      status: [],
+      ingredientes: {
+        paes: [
+          { id: 1, tipo: "Italiano Branco" },
+          { id: 2, tipo: "3 Queijos" },
+          { id: 3, tipo: "Parmesão e Orégano" },
+          { id: 4, tipo: "Integral" }
+        ],
+        carnes: [
+          { id: 1, tipo: "Maminha" },
+          { id: 2, tipo: "Alcatra" },
+          { id: 3, tipo: "Picanha" },
+          { id: 4, tipo: "Veggie burger" }
+        ]
       }
-    },
-    methods: {
-      async getPedidos() {
+    };
+  },
+  methods: {
+    async getPedidos() {
+      try {
         const req = await fetch('http://localhost:3000/burgers');
+        const data = await req.json();
 
-        const data = await req.json();  
+        data.forEach(burger => {
+          burger.pao = this.tipoPao(burger.pao);
+          burger.carne = this.tipoCarne(burger.carne);
+        });
 
         this.burgers = data;
-
         this.getStatus();
-
-      }, 
-      async getStatus() {
-
-        const req = await fetch('http://localhost:3000/status')
-
-        const data = await req.json()
-
+      } catch (error) {
+        console.error('Erro ao buscar pedidos:', error);
+      }
+    },
+    async getStatus() {
+      try {
+        const req = await fetch('http://localhost:3000/status');
+        const data = await req.json();
         this.status = data;
-
-      },
-    
-      async deleteBurger(id) {
-
+      } catch (error) {
+        console.error('Erro ao buscar status:', error);
+      }
+    },
+    async deleteBurger(id) {
+      try {
         const req = await fetch(`http://localhost:3000/burgers/${id}`, {
           method: "DELETE"
         });
-
         const res = await req.json();
-
         this.getPedidos();
-
-      },
-      async updateBurger(event, id) {
-
-        const option = event.target.value;
-
-        const dataJson = JSON.stringify({status: option});
-
-        const req = await fetch(`http://localhost:3000/burgers/${id}`, {
-          method: "PATCH",
-          headers: { "Content-Type" : "application/json" },
-          body: dataJson
-        });
-
-        const res = await req.json()
-
-        console.log(res)
-
-      },
-      async updatedBurger(event, id) {
-        const option = event.target.value;
-
-        const dataJson = JSON.stringify({ status:option });
-
-        const req = await fetch(`http://localhost:3000/burgers/${id}`, {
-          method: "PATCH",
-          headers: {"content-type": "application/json"},
-          body: dataJson
-        });
-
-        const res = await req.json();
+      } catch (error) {
+        console.error('Erro ao excluir burger:', error);
       }
     },
-    mounted () {
-    this.getPedidos()
+    async updateBurger(event, id) {
+      try {
+        const option = event.target.value;
+        const dataJson = JSON.stringify({ status: option });
+        const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: dataJson
+        });
+        const res = await req.json();
+        console.log(res);
+      } catch (error) {
+        console.error('Erro ao atualizar burger:', error);
+      }
     }
+  },
+  computed: {
+    tipoPao() {
+      return (paoId) => {
+        const pao = this.ingredientes.paes.find(p => p.id === paoId);
+        return pao ? pao.tipo : "Pão não especificado";
+      };
+    },
+    tipoCarne() {
+      return (carneId) => {
+        const carne = this.ingredientes.carnes.find(c => c.id === carneId);
+        return carne ? carne.tipo : "Carne não especificada";
+      };
+    }
+  },
+  mounted() {
+    this.getPedidos();
   }
-  
+};
 </script>
 
 <style scoped>

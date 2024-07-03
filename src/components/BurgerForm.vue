@@ -89,7 +89,7 @@ export default {
 
             const res = await req.json(); 
 
-            this.msg = `Pedidido N° ${res.id} realizado com sucesso`;
+            this.msg = `Pedidido realizado com sucesso`;
 
             setTimeout(()=> this.msg = "", 3000);
 

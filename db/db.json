@@ -79,17 +79,7 @@
   ],
   "burgers": [
     {
-      "id": "91d8",
-      "nome": "luis",
-      "carne": null,
-      "pao": null,
-      "opcionais": [
-        "Bacon"
-      ],
-      "status": "solicitado"
-    },
-    {
-      "id": "6f43",
+      "id": "bb15",
       "nome": "luis",
       "carne": null,
       "pao": null,
@@ -99,21 +89,33 @@
       "status": "solicitado"
     },
     {
-      "id": "bdaa",
-      "nome": "dfdf",
+      "id": "6603",
+      "nome": "a",
       "carne": null,
       "pao": null,
       "opcionais": [
-        "Tomate"
+        "Cheddar"
       ],
       "status": "solicitado"
     },
     {
-      "id": "5503",
-      "nome": "",
-      "carne": "",
-      "pao": "",
-      "opcionais": [],
+      "id": "638c",
+      "nome": "Luis Henrique Silva Ferreira ",
+      "carne": null,
+      "pao": null,
+      "opcionais": [
+        "Cheddar"
+      ],
+      "status": "solicitado"
+    },
+    {
+      "id": "725b",
+      "nome": "Luis Henrique Silva Ferreira ",
+      "carne": null,
+      "pao": null,
+      "opcionais": [
+        "Cheddar"
+      ],
       "status": "solicitado"
     }
   ]
