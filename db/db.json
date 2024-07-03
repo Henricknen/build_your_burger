@@ -77,46 +77,5 @@
       "tipo": "Finalizado"
     }
   ],
-  "burgers": [
-    {
-      "id": "bb15",
-      "nome": "luis",
-      "carne": null,
-      "pao": null,
-      "opcionais": [
-        "Cheddar"
-      ],
-      "status": "solicitado"
-    },
-    {
-      "id": "6603",
-      "nome": "a",
-      "carne": null,
-      "pao": null,
-      "opcionais": [
-        "Cheddar"
-      ],
-      "status": "solicitado"
-    },
-    {
-      "id": "638c",
-      "nome": "Luis Henrique Silva Ferreira ",
-      "carne": null,
-      "pao": null,
-      "opcionais": [
-        "Cheddar"
-      ],
-      "status": "solicitado"
-    },
-    {
-      "id": "725b",
-      "nome": "Luis Henrique Silva Ferreira ",
-      "carne": null,
-      "pao": null,
-      "opcionais": [
-        "Cheddar"
-      ],
-      "status": "solicitado"
-    }
-  ]
+  "burgers": []
 }

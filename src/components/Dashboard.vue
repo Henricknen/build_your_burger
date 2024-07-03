@@ -11,19 +11,19 @@
       </div>
     </div>
     <div id = "burger-table-rows">
-      <div class = "burger-table-row" v-for = "burger in burgers" :key = "burger.id"> 
-        <div class="order-number">{{ !isNaN(parseInt(burger.id)) ? parseInt(burger.id) : '0' }}</div>
+      <div class = "burger-table-row" v-for = "burger in burgers" :key = "burger.id">
+        <div class="order-number">{{ parseInt(burger.id) || 0 }}</div>
         <div>{{ burger.nome }}</div>
-        <div>{{ burger.pao   }}</div>
+        <div>{{ burger.pao }}</div>
         <div>{{ burger.carne }}</div>
         <div>
           <ul v-for = "(opcional, index) in burger.opcionais" :key = "index">
             <li>{{ opcional }}</li>
-          </ul> 
+          </ul>
         </div>
         <div>
           <select name = "status" class = "status" @change = "updateBurger($event, burger.id)">
-            <option :value = "s.tipo" v-for = "s in status" :key = "s.id" :selected = "burger.status  == s.tipo">
+            <option :value = "s.tipo" v-for = "s in status" :key = "s.id" :selected = "burger.status == s.tipo">
               {{ s.tipo }}
             </option>
           </select>
@@ -32,103 +32,73 @@
       </div>
     </div>
   </div>
-
+  <div v-else>
+    <h2>Não há pedidos no momento!</h2>
+  </div>
 </template>
 <script>
-export default {
-  name: "Dashboard",
-  data() {
-    return {
-      burgers: null,
-      burger_id: null,
-      status: [],
-      ingredientes: {
-        paes: [
-          { id: 1, tipo: "Italiano Branco" },
-          { id: 2, tipo: "3 Queijos" },
-          { id: 3, tipo: "Parmesão e Orégano" },
-          { id: 4, tipo: "Integral" }
-        ],
-        carnes: [
-          { id: 1, tipo: "Maminha" },
-          { id: 2, tipo: "Alcatra" },
-          { id: 3, tipo: "Picanha" },
-          { id: 4, tipo: "Veggie burger" }
-        ]
-      }
-    };
-  },
-  methods: {
-    async getPedidos() {
-      try {
-        const req = await fetch('http://localhost:3000/burgers');
-        const data = await req.json();
-
-        data.forEach(burger => {
-          burger.pao = this.tipoPao(burger.pao);
-          burger.carne = this.tipoCarne(burger.carne);
-        });
-
-        this.burgers = data;
-        this.getStatus();
-      } catch (error) {
-        console.error('Erro ao buscar pedidos:', error);
+  export default {
+    name: "Dashboard",
+    data() {
+      return {
+        burgers: null,
+        burger_id: null,
+        status: []
       }
     },
-    async getStatus() {
-      try {
-        const req = await fetch('http://localhost:3000/status');
-        const data = await req.json();
-        this.status = data;
-      } catch (error) {
-        console.error('Erro ao buscar status:', error);
-      }
-    },
-    async deleteBurger(id) {
-      try {
+    methods: {
+      async getPedidos() {
+        const req = await fetch('http://localhost:3000/burgers')
+
+        const data = await req.json()
+
+        this.burgers = data
+
+        this.getStatus()
+
+      },
+      async getStatus() {
+
+        const req = await fetch('http://localhost:3000/status')
+
+        const data = await req.json()
+
+        this.status = data
+
+      },
+      async deleteBurger(id) {
+
         const req = await fetch(`http://localhost:3000/burgers/${id}`, {
           method: "DELETE"
         });
-        const res = await req.json();
-        this.getPedidos();
-      } catch (error) {
-        console.error('Erro ao excluir burger:', error);
-      }
-    },
-    async updateBurger(event, id) {
-      try {
+
+        const res = await req.json()
+
+        this.getPedidos()
+
+      },
+      async updateBurger(event, id) {
+
         const option = event.target.value;
-        const dataJson = JSON.stringify({ status: option });
+
+        const dataJson = JSON.stringify({status: option});
+
         const req = await fetch(`http://localhost:3000/burgers/${id}`, {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type" : "application/json" },
           body: dataJson
         });
-        const res = await req.json();
-        console.log(res);
-      } catch (error) {
-        console.error('Erro ao atualizar burger:', error);
+
+        const res = await req.json()
+
+        console.log(res)
+
       }
-    }
-  },
-  computed: {
-    tipoPao() {
-      return (paoId) => {
-        const pao = this.ingredientes.paes.find(p => p.id === paoId);
-        return pao ? pao.tipo : "Pão não especificado";
-      };
     },
-    tipoCarne() {
-      return (carneId) => {
-        const carne = this.ingredientes.carnes.find(c => c.id === carneId);
-        return carne ? carne.tipo : "Carne não especificada";
-      };
+    mounted () {
+    this.getPedidos()
     }
-  },
-  mounted() {
-    this.getPedidos();
   }
-};
 </script>
 
 <style scoped>
@@ -188,4 +158,4 @@ export default {
     color: #222;
   }
   
-</style>
+</style> 
